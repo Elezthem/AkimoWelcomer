@@ -1,5 +1,4 @@
 import os
-from msilib.schema import SelfReg
 from venv import logger
 import disnake
 from disnake.ext import commands
