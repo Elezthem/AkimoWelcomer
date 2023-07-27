@@ -64,6 +64,14 @@ async def on_member_join(member):
     await member.add_roles(role)
     await channel.send(embed=embed)
 
+@bot.command()
+async def role(ctx, target: disnake.Member):
+    author = target
+    guild = bot.get_guild(1067554815690952835)
+    role = guild.get_role(1067827586534744115)
+
+    await author.add_roles(role)
+
 @bot.event
 async def on_ready():
     await bot.change_presence(
