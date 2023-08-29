@@ -6,7 +6,7 @@ from datetime import datetime
 from disnake import utils
 
 bot = commands.Bot(command_prefix=commands.when_mentioned, help_command=None, intents=disnake.Intents.all(), test_guilds=[1067554815690952835])
-CENSORED_WORDS = ["nigga", "niga", "naga", "dick", "пошел нахуй", "пидр", "нага", "нига", "нигга", "пососи хуя"]
+CENSORED_WORDS = ["nigga", "niga", "naga", "dick", "пошел нахуй", "пидр", "нага", "нига", "нигга", "пососи хуя", "mamy ebal", "маму ебал", "ты хуй", "блядь ты", "твоя мама сучка", "я ебал твою телку", "ты корова", "админы хуи", "стафф хуйня", "сервер хуйня", "овнер пидор", "овнер сын шлюхи", "69 с тобой", "пошла нахуй", "Россия топ", "россия топ", "слава россии", "Слава Росии"]
 
 @bot.command()
 @commands.is_owner()
@@ -53,11 +53,10 @@ async def on_member_join(member):
     channel = utils.get(bot.get_all_channels(), id=1067556311069372457) 
 
     embed = disnake.Embed(
-        title="Новый участник",
-        description=f"**{member.name}#{member.discriminator}** -**Сервер поможет** вам **найти человека** для **__взаимного входа__**.\n"
-                    "・На **сервере созданы** **удобные каналы** для этого.\n"
-                    "・**__Пример работы__** - **вы заходите** на **сервер** с кем **__договорились__**, а **__он заходит__** на **__ваш__** **сервер**.\n"
-                    "・**Удачного** развития!",
+        title="New member",
+        description=f"**{member.name}#{member.discriminator}** - US **The server will help** you **find a person** for **__join for join__**.\n" 
+                    "・The **server has created** **convenient channels** for this.\n" "・**__Example work__** - **you go** to **server** with whom **__arranged__**, and **__he goes__** to **__your__** **server**.\n" 
+                    "・** Successful ** development!",
         color=0xffffff
     )
 
@@ -77,7 +76,7 @@ async def on_ready():
     await bot.change_presence(
         status=disnake.Status.online,
         activity=disnake.Streaming(
-            name="Приветствую новеньких на сервере Взаимный Вход на Сервер", url="https://www.twitch.tv/twitch"
+            name="Hello newcomers to the server ( Взаимный Вход на Сервер | JOIN FOR JOIN )", url="https://www.twitch.tv/twitch"
         ),
     )
 
