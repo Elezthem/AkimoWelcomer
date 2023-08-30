@@ -6,7 +6,7 @@ from datetime import datetime
 from disnake import utils
 
 bot = commands.Bot(command_prefix=commands.when_mentioned, help_command=None, intents=disnake.Intents.all(), test_guilds=[1067554815690952835])
-CENSORED_WORDS = ["nigga", "niga", "naga", "dick", "пошел нахуй", "пидр", "нага", "нига", "нигга", "пососи хуя", "mamy ebal", "маму ебал", "ты хуй", "блядь ты", "твоя мама сучка", "я ебал твою телку", "ты корова", "админы хуи", "стафф хуйня", "сервер хуйня", "овнер пидор", "овнер сын шлюхи", "69 с тобой", "пошла нахуй", "Россия топ", "россия топ", "слава россии", "Слава Росии"]
+CENSORED_WORDS = ["nigga", "niga", "naga", "dick", "пидр", "нага", "нига", "нигга"]
 
 @bot.command()
 @commands.is_owner()
@@ -32,10 +32,10 @@ async def on_command_error(ctx, error):
     print(error)
 
     if isinstance(error, commands.MissingPermissions):
-        await ctx.send(f"{ctx.author}, У вас недостаточно прав для выполнение данной команды!")
+        await ctx.send(f"{ctx.author}, You do not have sufficient rights to execute this command!")
     elif isinstance(error, commands.UserInputError):
         await ctx.send(embed=disnake.Embed(
-            description=f"Правильное использование команды: `{ctx.prefix}{ctx.command.name}` ({ctx.command.brief})\nExample: {ctx.prefix}{ctx.command.usage}"
+            description=f"Proper command usage: `{ctx.prefix}{ctx.command.name}` ({ctx.command.brief})\nExample: {ctx.prefix}{ctx.command.usage}"
         ))
 
 @bot.event
@@ -45,7 +45,7 @@ async def on_message(message):
         for censored_word in CENSORED_WORDS:
             if content.lower() == censored_word:
                 await message.delete()
-                await message.channel.send(f"{message.author.mention} такие слова запрещены!", delete_after=15)
+                await message.channel.send(f"{message.author.mention} such words are forbidden!", delete_after=15)
 
 @bot.event
 async def on_member_join(member):
@@ -70,6 +70,17 @@ async def role(ctx, target: disnake.Member):
     role = guild.get_role(1067827586534744115)
 
     await author.add_roles(role)
+
+@bot.event
+async def on_member_join(member):
+    now = datetime.now()
+    emb = disnake.Embed(title='Welcome to Взаимный Вход на Сервер | JOIN FOR JOIN', color=0xffff)
+    emb.add_field(name="If you don't know what to do", value='<#1067554816219431004>, <#1067557714647060533> you can conclude J4J!', inline=False)
+    emb.add_field(name="Also, so that there are no pretensions and disagreements", value='You need to read channels <#1067557981203468328>, <#1067556483832754186>', inline=False)
+    emb.add_field(name= "Other & Support & Report", value='<#1067559561025830953> **Good Luck**!', inline=False)
+    emb.set_author(name=f'{member.name}#{member.discriminator}')
+    emb.set_footer(text=f'You ID: {member.id} • {now.hour}:{now.minute}')
+    await member.send(embed = emb)
 
 @bot.event
 async def on_ready():
