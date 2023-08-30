@@ -48,7 +48,7 @@ async def on_message(message):
                 await message.channel.send(f"{message.author.mention} such words are forbidden!", delete_after=15)
 
 @bot.event
-async def on_member_join(member):
+async def on_member_join1(member):
     role = disnake.utils.get(member.guild.roles, id=1067826580681916416)
     channel = utils.get(bot.get_all_channels(), id=1067556311069372457) 
 
